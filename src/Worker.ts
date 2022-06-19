@@ -117,6 +117,9 @@ export default class Worker<JobData, ReturnData> implements WorkerOptions {
         this.activeTarget = null;
 
         if (errorState) {
+            if (jobInstance.onError) {
+                await jobInstance.onError(errorState)
+            }
             return {
                 type: 'error',
                 error: errorState || new Error('asf'),

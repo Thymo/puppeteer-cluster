@@ -71,6 +71,7 @@ export interface JobInstance {
      * Called to close the related resources
      */
     close: () => Promise<void>;
+    onError?: (error: Error) => Promise<void>;
 }
 
 export interface ResourceData {
